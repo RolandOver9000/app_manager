@@ -2,16 +2,15 @@ package com.agileexpert.appmanager.model.menuelement;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public abstract class MenuElement {
 
     private String elementName;
+    protected Set<MenuElement> subMenuElements;
     protected MenuElement previousMenuElement;
 
-    protected abstract void showContent();
-
-    protected void setPreviousMenuElement(MenuElement newPreviousMenuElement) {
-        this.previousMenuElement = newPreviousMenuElement;
-    };
+    public abstract void showContent();
 
 }

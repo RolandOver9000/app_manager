@@ -22,14 +22,12 @@ public class AppManagerUser {
     @Column(nullable = false)
     private String password;
 
-    private ConsoleSettings consoleSettings;
-
-    @OneToMany(mappedBy = "", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "appManagerUser", cascade = {CascadeType.PERSIST})
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<AppManagerUser> familyMembers;
+    private Set<ConsoleSettings> consoleSettings;
 
-    @Enumerated(EnumType.STRING)
-    private FamilyRole familyRole;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Family userFamily;
 
 }

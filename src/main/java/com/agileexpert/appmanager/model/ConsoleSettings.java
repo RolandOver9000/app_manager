@@ -18,10 +18,10 @@ public class ConsoleSettings {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
     private AppManagerUser appManagerUser;
 
     private String iconUnicode;
 
-    @Enumerated(EnumType.STRING)
-    private BackgroundColor consoleBackgroundColor;
+    private String consoleBackgroundColor;
 }

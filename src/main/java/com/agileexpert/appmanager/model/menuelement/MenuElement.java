@@ -1,16 +1,8 @@
 package com.agileexpert.appmanager.model.menuelement;
 
-import lombok.Data;
+public interface MenuElement {
 
-import java.util.Set;
+    void handleMenuAction();
 
-@Data
-public abstract class MenuElement {
-
-    private String elementName;
-    protected Set<MenuElement> subMenuElements;
-    protected MenuElement previousMenuElement;
-
-    public abstract void showContent();
-
+    String getElementName();
 }

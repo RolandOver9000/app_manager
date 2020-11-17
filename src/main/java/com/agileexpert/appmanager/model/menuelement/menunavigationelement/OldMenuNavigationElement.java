@@ -1,15 +1,17 @@
-package com.agileexpert.appmanager.model.menuelement;
+/*
+package com.agileexpert.appmanager.model.menuelement.menunavigationelement;
 
+import com.agileexpert.appmanager.model.menuelement.MenuElement;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
-public class MenuNavigationElement implements MenuElement {
+public class OldMenuNavigationElement implements MenuElement {
 
     private String elementName;
     protected Set<MenuElement> subMenuElements;
-    protected MenuNavigationElement previousMenuNavigationElement;
+    protected OldMenuNavigationElement previousOldMenuNavigationElement;
 
     public void showContent() {
         System.out.println("Please, write down the number of the chosen menu: ");
@@ -24,3 +26,4 @@ public class MenuNavigationElement implements MenuElement {
 
     }
 }
+*/

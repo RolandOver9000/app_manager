@@ -1,12 +1,12 @@
 package com.agileexpert.appmanager.service;
 
-import com.agileexpert.appmanager.model.menuelement.MenuNavigationElement;
+import com.agileexpert.appmanager.model.menuelement.menunavigationelement.OldMenuNavigationElement;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MenuService {
 
-    private MenuNavigationElement currentElement;
+    private OldMenuNavigationElement currentElement;
 
     public void startMenu() {
         initializeMenuElements();

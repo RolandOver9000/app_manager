@@ -2,9 +2,7 @@ package com.agileexpert.appmanager.model.menuelement;
 
 public interface MenuElement {
 
-    void handleMenuAction();
-
-    void showContent();
+    void handleAction();
 
     String getElementName();
 }

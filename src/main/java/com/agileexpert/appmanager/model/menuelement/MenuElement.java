@@ -4,5 +4,7 @@ public interface MenuElement {
 
     void handleMenuAction();
 
+    void showContent();
+
     String getElementName();
 }

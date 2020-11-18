@@ -2,6 +2,7 @@ package com.agileexpert.appmanager.service;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.repository.AppManagerUserRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

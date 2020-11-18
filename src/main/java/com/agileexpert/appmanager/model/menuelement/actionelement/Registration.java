@@ -33,16 +33,16 @@ public class Registration implements MenuElement {
         String familyHeadPasswordConfirm = "";
 
         while(!familyHeadPassword.equals(familyHeadPasswordConfirm)) {
-            System.out.println("Please confirm your password, or enter b for exit: ");
+            System.out.println("Please confirm your password, or enter 0 for exit: ");
             familyHeadPasswordConfirm = Util.readUserInput();
-            if(familyHeadPasswordConfirm.equals("b")) {
+            if(familyHeadPasswordConfirm.equals("0")) {
                 previousMenuElement.handleMenuInteraction();
             }
         }
 
         handleRegistrationData(familyHeadUsername, familyHeadPassword);
-        previousMenuElement.handleMenuInteraction();
         System.out.println("You are now registered in the system. You can now login.");
+        previousMenuElement.handleMenuInteraction();
     }
 
     private void handleRegistrationData(String familyHeadUsername, String familyHeadPassword) {

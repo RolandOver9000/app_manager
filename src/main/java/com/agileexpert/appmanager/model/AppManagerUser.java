@@ -30,4 +30,7 @@ public class AppManagerUser {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Family userFamily;
 
+    @Column(nullable = false)
+    private boolean isUserFamilyHead;
+
 }

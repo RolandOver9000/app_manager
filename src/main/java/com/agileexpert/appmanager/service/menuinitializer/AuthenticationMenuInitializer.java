@@ -25,7 +25,8 @@ public class AuthenticationMenuInitializer extends MenuInitializer{
 
     @Override
     public void linkMenuElements() {
+        registration.setPreviousMenuElement(menuElement);
         subElements.put(Integer.toString(subElements.size() +1), registration);
-
+        menuElement.setMenuElements(subElements);
     }
 }

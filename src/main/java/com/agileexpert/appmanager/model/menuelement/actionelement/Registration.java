@@ -18,6 +18,7 @@ public class Registration implements MenuElement {
     private final UserService userService;
     private final FamilyService familyService;
     private String menuElementName = "Registration";
+    private MenuElement previousMenuElement;
 
     @Override
     public void handleMenuInteraction() {
@@ -35,11 +36,12 @@ public class Registration implements MenuElement {
             System.out.println("Please confirm your password, or enter b for exit: ");
             familyHeadPasswordConfirm = Util.readUserInput();
             if(familyHeadPasswordConfirm.equals("b")) {
-                return;
+                previousMenuElement.handleMenuInteraction();
             }
         }
-        handleRegistrationData(familyHeadUsername, familyHeadPassword);
 
+        handleRegistrationData(familyHeadUsername, familyHeadPassword);
+        previousMenuElement.handleMenuInteraction();
         System.out.println("You are now registered in the system. You can now login.");
     }
 

@@ -31,19 +31,27 @@ public class MenuNavigationElement implements NavigationElement {
                     menuElements.get(menuActionKey).getMenuElementName());
         }
         if(previousMenuNavigationElement != null) {
-            System.out.println("\n For previous menu please press b.");
+            System.out.println("\n For previous menu please enter 0.");
         }
-        handleAction();
     }
 
     public void handleAction() {
-        System.out.println("Please, write down the number of the chosen menu: ");
-        String chosenMenuNumber = Util.readUserInput();
-        if(chosenMenuNumber.equals("b")) {
+        String userInput = "";
+        while(!Util.isInputValidNumber(userInput) ||
+                !isInputChoosableOption(userInput)) {
+            System.out.println("Please, write down the number of the chosen menu: ");
+            userInput = Util.readUserInput();
+        }
+        if (userInput.equals("0")) {
             previousMenuNavigationElement.handleMenuInteraction();
         } else {
-            menuElements.get(chosenMenuNumber).handleMenuInteraction();
+            menuElements.get(userInput).handleMenuInteraction();
         }
+
+    }
+
+    private boolean isInputChoosableOption(String input) {
+        return menuElements.containsKey(input);
     }
 
     @Override

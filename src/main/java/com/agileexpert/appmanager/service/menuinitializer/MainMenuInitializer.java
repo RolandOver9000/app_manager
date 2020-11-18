@@ -2,6 +2,7 @@ package com.agileexpert.appmanager.service.menuinitializer;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
+import com.agileexpert.appmanager.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

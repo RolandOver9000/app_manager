@@ -3,6 +3,7 @@ package com.agileexpert.appmanager.model.menuelement.actionelement;
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.Family;
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
+import com.agileexpert.appmanager.service.FamilyService;
 import com.agileexpert.appmanager.service.UserService;
 import com.agileexpert.appmanager.service.util.Util;
 import lombok.Data;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class Registration implements MenuElement {
 
     private final UserService userService;
+    private final FamilyService familyService;
     private String menuElementName = "Registration";
 
     @Override
@@ -47,5 +49,6 @@ public class Registration implements MenuElement {
                 .password(familyHeadPassword)
                 .isUserFamilyHead(true)
                 .build();
+
     }
 }

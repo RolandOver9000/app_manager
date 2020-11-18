@@ -40,7 +40,7 @@ public class Registration implements MenuElement {
         }
         handleRegistrationData(familyHeadUsername, familyHeadPassword);
 
-        System.out.println("You are now registered in the system.");
+        System.out.println("You are now registered in the system. You can now login.");
     }
 
     private void handleRegistrationData(String familyHeadUsername, String familyHeadPassword) {
@@ -50,5 +50,12 @@ public class Registration implements MenuElement {
                 .isUserFamilyHead(true)
                 .build();
 
+        Family newFamily = Family.builder()
+                .familyHead(newAppManagerUser)
+                .build();
+
+        newAppManagerUser.setUserFamily(newFamily);
+        userService.addUser(newAppManagerUser);
+        familyService.createNewFamily(newFamily);
     }
 }

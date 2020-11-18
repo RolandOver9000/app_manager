@@ -1,23 +1,30 @@
 package com.agileexpert.appmanager.service;
 
-import com.agileexpert.appmanager.model.menuelement.menunavigationelement.OldMenuNavigationElement;
+import com.agileexpert.appmanager.service.menuinitializer.MainMenuInitializer;
+import com.agileexpert.appmanager.service.menuinitializer.UserManagerMenuInitializer;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MenuService {
 
-    private OldMenuNavigationElement currentElement;
+    private final MainMenuInitializer mainMenuInitializer;
+    private final UserManagerMenuInitializer userManagerMenuInitializer;
 
-    public void startMenu() {
+    public void startAppManagerApplication() {
         initializeMenuElements();
+        linkMenuElements();
+        mainMenuInitializer.getMenuElement().displayContent();
     }
 
     private void initializeMenuElements() {
-
+        userManagerMenuInitializer.initialize();
+        mainMenuInitializer.initialize();
     }
 
-    public void showMenu() {
-        currentElement.showContent();
+    private void linkMenuElements() {
+        userManagerMenuInitializer.linkMenuElements();
+        mainMenuInitializer.linkMenuElements();
     }
-
 }

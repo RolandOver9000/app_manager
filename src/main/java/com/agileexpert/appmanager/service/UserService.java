@@ -23,4 +23,10 @@ public class UserService {
 
     }
 
+    public AppManagerUser searchUserByNameAndPassword(String username, String password) {
+        return appManagerUserRepository
+                .findByUsernameAndPassword(username, password)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found by name: " + username));
+    }
+
 }

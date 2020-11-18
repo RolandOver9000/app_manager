@@ -2,10 +2,11 @@ package com.agileexpert.appmanager.service;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.repository.AppManagerUserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,10 +25,9 @@ public class UserService {
 
     }
 
-    public AppManagerUser searchUserByNameAndPassword(String username, String password) {
+    public Optional<AppManagerUser> searchUserByNameAndPassword(String username, String password) {
         return appManagerUserRepository
-                .findByUsernameAndPassword(username, password)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found by name: " + username));
+                .findByUsernameAndPassword(username, password);
     }
 
 }

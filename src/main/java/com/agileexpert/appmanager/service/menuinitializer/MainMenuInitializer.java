@@ -28,7 +28,6 @@ public class MainMenuInitializer extends MenuInitializer {
         userManagerMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
         MenuElement userManager = userManagerMenuInitializer.getMenuElement();
         subElements.put(Integer.toString(subElements.size() +1), userManager);
-        subElements.put(Integer.toString(subElements.size() +1), userManager);
         menuElement.setMenuElements(subElements);
     }
 

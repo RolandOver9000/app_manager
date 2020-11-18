@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Login implements MenuElement {
 
     private final UserService userService;
-    private String menuElementName = "Registration";
+    private String menuElementName = "Login";
     private MenuElement previousMenuElement;
     private MenuElement menuElementAfterSuccessfulLogin;
 
@@ -32,17 +32,20 @@ public class Login implements MenuElement {
     }
 
     private void handleLoginInputs(String username, String password) {
-        AppManagerUser searchedUser = userService.searchUserByNameAndPassword(username, password);
-        if(searchedUser != null) {
-            System.out.println("Welcome " + username + "!");
-        } else {
-            System.out.println("Your username or password is not correct.");
-            previousMenuElement.handleMenuInteraction();
-        }
+       userService.searchUserByNameAndPassword(username, password)
+                .ifPresentOrElse(
+                        (appManagerUser) -> {
+                            System.out.println("Welcome " + username + "!");
+                            menuElementAfterSuccessfulLogin.handleMenuInteraction();
+                            },
+                        () -> {
+                            System.out.println("Your username or password is not correct.");
+                            previousMenuElement.handleMenuInteraction();
+                        });
     }
 
     @Override
     public String getMenuElementName() {
-        return null;
+        return menuElementName;
     }
 }

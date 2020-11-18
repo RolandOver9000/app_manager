@@ -5,7 +5,6 @@ import com.agileexpert.appmanager.service.menuinitializer.MainMenuInitializer;
 import com.agileexpert.appmanager.service.menuinitializer.MenuInitializer;
 import com.agileexpert.appmanager.service.menuinitializer.UserManagerMenuInitializer;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

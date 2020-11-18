@@ -37,6 +37,7 @@ public class Login implements MenuElement {
                         (appManagerUser) -> {
                             System.out.println("Welcome " + username + "!");
                             menuElementAfterSuccessfulLogin.handleMenuInteraction();
+                            userService.setCurrentLoggedInUser(appManagerUser);
                             },
                         () -> {
                             System.out.println("Your username or password is not correct.");

@@ -1,8 +1,6 @@
 package com.agileexpert.appmanager.service.menuinitializer;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
-import com.agileexpert.appmanager.model.menuelement.actionelement.authentication.Login;
-import com.agileexpert.appmanager.model.menuelement.actionelement.authentication.Registration;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,25 +10,23 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class AuthenticationMenuInitializer extends MenuInitializer{
+public class ConsoleSettingsMenuInitializer extends MenuInitializer{
 
-    private final Registration registration;
-    private final Login login;
+    private final IconSettingsMenuInitializer iconSettingsMenuInitializer;
     private Map<String, MenuElement> subElements = new HashMap<>();
 
     @Override
     public void initialize() {
         menuElement = MenuNavigationElement.builder()
-                .menuElementName("Authentication menu")
+                .menuElementName("Console settings menu")
                 .build();
     }
 
     @Override
     public void linkMenuElements() {
-        registration.setPreviousMenuElement(menuElement);
-        login.setPreviousMenuElement(menuElement);
-        subElements.put(Integer.toString(subElements.size() +1), registration);
-        subElements.put(Integer.toString(subElements.size() +1), login);
+        iconSettingsMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
+        MenuElement iconSettingsMenu = iconSettingsMenuInitializer.getMenuElement();
+        subElements.put(Integer.toString(subElements.size() +1), iconSettingsMenu);
         menuElement.setMenuElements(subElements);
     }
 }

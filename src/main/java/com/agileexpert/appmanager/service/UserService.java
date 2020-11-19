@@ -1,6 +1,7 @@
 package com.agileexpert.appmanager.service;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
+import com.agileexpert.appmanager.model.ConsoleSettings;
 import com.agileexpert.appmanager.model.Family;
 import com.agileexpert.appmanager.repository.AppManagerUserRepository;
 import lombok.Data;
@@ -16,21 +17,26 @@ import java.util.Optional;
 @Slf4j
 public class UserService {
 
-    private AppManagerUser currentLoggedInUser;
+    private final AppManagerContext appManagerContext;
     private final FamilyService familyService;
+    private final ConsoleSettingsService consoleSettingsService;
     private final AppManagerUserRepository appManagerUserRepository;
 
     public void addUser(String username, String password) {
+        AppManagerUser currentAppManagerUser = appManagerContext.getCurrentAppManagerUser();
         try {
             AppManagerUser newUser = AppManagerUser.builder()
                     .username(username)
                     .password(password)
                     .build();
-            Family currentUserFamily = familyService.getFamilyByFamilyHead(currentLoggedInUser);
-            System.out.println(currentLoggedInUser.toString());
-            newUser.setUserFamily(currentUserFamily);
-            System.out.println(newUser.toString());
-            appManagerUserRepository.save(newUser);
+            Family currentUserFamily = familyService.getFamilyByFamilyHead(currentAppManagerUser);
+            System.out.println(currentAppManagerUser.toString());
+            AppManagerUser savedAppManagerUser = appManagerUserRepository.save(newUser);
+            savedAppManagerUser.setUserFamily(currentUserFamily);
+            appManagerUserRepository.save(savedAppManagerUser);
+
+
+            System.out.println("new user " + newUser.toString());
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Error occurred while saving user to the database.");
@@ -38,20 +44,25 @@ public class UserService {
     }
 
     public void addFamilyHead(String username, String password) {
-        AppManagerUser newAppManagerUser = AppManagerUser.builder()
+        AppManagerUser newUser = AppManagerUser.builder()
                 .username(username)
                 .password(password)
                 .isUserFamilyHead(true)
                 .build();
 
-        Family newFamily = Family.builder()
-                .build();
+        Family newFamily = familyService.getNewFamilyObject();
+        consoleSettingsService.setConsoleSettingsForRegisteredUser(newUser);
+        AppManagerUser savedAppManagerUser = appManagerUserRepository.save(newUser);
+        Family savedFamily = familyService.createNewFamily(newFamily);
+        connectFamilyHeadWithFamily(savedFamily, savedAppManagerUser);
 
-        newAppManagerUser.setUserFamily(newFamily);
-        newFamily.setFamilyHead(newAppManagerUser);
-        System.out.println(newAppManagerUser.toString());
-        appManagerUserRepository.save(newAppManagerUser);
-        familyService.createNewFamily(newFamily);
+    }
+
+    private void connectFamilyHeadWithFamily(Family savedFamily, AppManagerUser savedAppManagerUser) {
+        savedAppManagerUser.setUserFamily(savedFamily);
+        savedFamily.setFamilyHead(savedAppManagerUser);
+        appManagerUserRepository.save(savedAppManagerUser);
+        familyService.createNewFamily(savedFamily);
     }
 
     public boolean isUserExist(String username, String password) {
@@ -65,7 +76,7 @@ public class UserService {
     }
 
     public void afterSuccessfulLogin(AppManagerUser appManagerUser) {
-        setCurrentLoggedInUser(appManagerUser);
+        appManagerContext.setCurrentAppManagerUser(appManagerUser);
     }
 
 }

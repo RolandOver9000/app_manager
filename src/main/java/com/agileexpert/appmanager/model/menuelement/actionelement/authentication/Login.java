@@ -1,4 +1,4 @@
-package com.agileexpert.appmanager.model.menuelement.actionelement;
+package com.agileexpert.appmanager.model.menuelement.actionelement.authentication;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
 import com.agileexpert.appmanager.service.AuthorizationService;

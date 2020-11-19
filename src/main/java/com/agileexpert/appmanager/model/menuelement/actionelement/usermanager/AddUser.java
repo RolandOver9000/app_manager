@@ -1,7 +1,5 @@
-package com.agileexpert.appmanager.model.menuelement.actionelement;
+package com.agileexpert.appmanager.model.menuelement.actionelement.usermanager;
 
-import com.agileexpert.appmanager.model.AppManagerUser;
-import com.agileexpert.appmanager.model.Family;
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
 import com.agileexpert.appmanager.service.UserService;
 import com.agileexpert.appmanager.service.util.Util;
@@ -17,6 +15,7 @@ public class AddUser implements MenuElement {
 
     private final UserService userService;
     private String menuElementName = "Add user";
+    private MenuElement previousMenuElement;
 
     @Override
     public void handleMenuInteraction() {
@@ -31,5 +30,6 @@ public class AddUser implements MenuElement {
 
         userService.addUser(newUsername, newPassword);
         System.out.println("User saved.");
+        previousMenuElement.handleMenuInteraction();
     }
 }

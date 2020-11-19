@@ -51,7 +51,7 @@ public class MenuNavigationElement implements NavigationElement {
     }
 
     private boolean isInputChoosableOption(String input) {
-        return menuElements.containsKey(input);
+        return menuElements.containsKey(input) || input.equals("0");
     }
 
     @Override

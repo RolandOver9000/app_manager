@@ -1,10 +1,7 @@
 package com.agileexpert.appmanager.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -19,7 +16,8 @@ public class Application {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private AppManagerUser appManagerUser;
 
     private String applicationName;

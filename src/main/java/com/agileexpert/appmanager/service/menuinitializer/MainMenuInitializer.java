@@ -33,9 +33,11 @@ public class MainMenuInitializer extends MenuInitializer {
 
         MenuElement userManager = userManagerMenuInitializer.getMenuElement();
         MenuElement consoleSettings = consoleSettingsMenuInitializer.getMenuElement();
+        MenuElement applications = applicationMenuInitializer.getMenuElement();
 
         subElements.put(Integer.toString(subElements.size() +1), userManager);
         subElements.put(Integer.toString(subElements.size() + 1), consoleSettings);
+        subElements.put(Integer.toString(subElements.size() + 1), applications);
         menuElement.setMenuElements(subElements);
     }
 

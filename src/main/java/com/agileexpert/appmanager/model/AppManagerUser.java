@@ -25,7 +25,7 @@ public class AppManagerUser {
     @EqualsAndHashCode.Exclude
     private Set<ConsoleSettings> consoleSettings;
 
-    @OneToMany(mappedBy = "appManagerUser", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "appManagerUser", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Application> applications;

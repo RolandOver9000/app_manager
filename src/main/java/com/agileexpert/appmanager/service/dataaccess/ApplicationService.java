@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
@@ -22,12 +22,10 @@ public class ApplicationService{
     private final AppManagerContext appManagerContext;
 
 
-    public Set<Application> getInstalledApplications() {
+    public List<Application> getInstalledApplications() {
         initSomeApplications();
         return applicationRepository
-                .findByAppManagerUser(appManagerContext.getCurrentAppManagerUser())
-                .stream()
-                .collect(Collectors.toSet());
+                .findByAppManagerUser(appManagerContext.getCurrentAppManagerUser());
     }
 
     private void initSomeApplications() {
@@ -36,7 +34,7 @@ public class ApplicationService{
                 .appManagerUser(appManagerContext.getCurrentAppManagerUser())
                 .applicationPath("/app/tinder")
                 .build();
-
+        
         Application application2 = Application.builder()
                 .applicationName("BeHealthy")
                 .appManagerUser(appManagerContext.getCurrentAppManagerUser())

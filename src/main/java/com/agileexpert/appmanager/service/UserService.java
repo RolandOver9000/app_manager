@@ -75,6 +75,7 @@ public class UserService {
     }
 
     public void afterSuccessfulLogin(AppManagerUser appManagerUser) {
+        AppManagerContext.
         setCurrentLoggedInUser(appManagerUser);
     }
 

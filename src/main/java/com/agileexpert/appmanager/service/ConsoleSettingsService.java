@@ -8,12 +8,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Data
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class ConsoleSettingsService {
 
+    private final UserService userService;
     private final ConsoleSettingsRepository consoleSettingsRepository;
     private static String STANDARD_BACKGROUND_COLOR = "black";
     private static String STANDARD_ICON = "~";
@@ -24,9 +27,20 @@ public class ConsoleSettingsService {
                  .icon(STANDARD_ICON)
                  .appManagerUser(newAppManagerUser)
                  .build();
-        System.out.println("consolesettings " + newConsoleSettings);
         consoleSettingsRepository.save(newConsoleSettings);
 
 
+    }
+
+    public boolean trySetNewIcon(String newIcon) {
+        Optional<ConsoleSettings> currentConsoleSettings =
+                consoleSettingsRepository.getConsoleSettingsByAppManagerUser(userService.getCurrentLoggedInUser());
+        if(currentConsoleSettings.isPresent()) {
+            ConsoleSettings searchedSettings = currentConsoleSettings.get();
+            searchedSettings.setIcon(newIcon);
+            consoleSettingsRepository.save(searchedSettings);
+            return true;
+        }
+        return false;
     }
 }

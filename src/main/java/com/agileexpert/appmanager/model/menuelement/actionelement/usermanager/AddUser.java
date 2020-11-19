@@ -1,4 +1,4 @@
-package com.agileexpert.appmanager.model.menuelement.actionelement;
+package com.agileexpert.appmanager.model.menuelement.actionelement.usermanager;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.Family;

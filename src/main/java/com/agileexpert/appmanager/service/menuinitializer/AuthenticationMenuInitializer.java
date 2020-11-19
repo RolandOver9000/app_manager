@@ -1,8 +1,8 @@
 package com.agileexpert.appmanager.service.menuinitializer;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
-import com.agileexpert.appmanager.model.menuelement.actionelement.Login;
-import com.agileexpert.appmanager.model.menuelement.actionelement.Registration;
+import com.agileexpert.appmanager.model.menuelement.actionelement.authentication.Login;
+import com.agileexpert.appmanager.model.menuelement.actionelement.authentication.Registration;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

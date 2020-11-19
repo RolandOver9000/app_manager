@@ -2,6 +2,7 @@ package com.agileexpert.appmanager.service.menuinitializer;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
 import com.agileexpert.appmanager.model.menuelement.actionelement.icon.AddIcon;
+import com.agileexpert.appmanager.model.menuelement.actionelement.icon.DeleteIcon;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.Map;
 public class IconSettingsMenuInitializer extends MenuInitializer {
 
     private final AddIcon addIcon;
+    private final DeleteIcon deleteIcon;
     private Map<String, MenuElement> subElements = new HashMap<>();
 
     @Override
@@ -26,7 +28,9 @@ public class IconSettingsMenuInitializer extends MenuInitializer {
     @Override
     public void linkMenuElements() {
         addIcon.setPreviousMenuElement(menuElement);
+        deleteIcon.setPreviousMenuElement(menuElement);
         subElements.put(Integer.toString(subElements.size() +1), addIcon);
+        subElements.put(Integer.toString(subElements.size() +1), deleteIcon);
         menuElement.setMenuElements(subElements);
     }
 }

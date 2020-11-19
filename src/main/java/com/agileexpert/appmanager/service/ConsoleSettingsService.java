@@ -48,9 +48,10 @@ public class ConsoleSettingsService {
     }
 
     public void removeCurrentUserIcon() {
-        ConsoleSettings changedConsoleSettings = getCurrentConsoleSettings();
-        changedConsoleSettings.setIcon("");
-        refreshAppManagerContextCurrentConsoleSettings(changedConsoleSettings);
+        ConsoleSettings searchedConsoleSettings = getCurrentConsoleSettings();
+        searchedConsoleSettings.setIcon("");
+        consoleSettingsRepository.save(searchedConsoleSettings);
+        refreshAppManagerContextCurrentConsoleSettings(searchedConsoleSettings);
     }
 
     private ConsoleSettings getCurrentConsoleSettings() {

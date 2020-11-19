@@ -27,14 +27,12 @@ public class DeleteIcon implements MenuElement{
         while(!isUserAnswerValid(userAnswer)) {
             System.out.println("Are you sure you want to delete your icon? ((y)es / (n)o");
             userAnswer = Util.readUserInput();
-            if (userAnswer.equals("y")) {
-                consoleSettingsService.removeCurrentUserIcon();
-                System.out.println("Your icon removed.");
-            }
-            if (userAnswer.equals("n")) {
-                previousMenuElement.handleMenuInteraction();
-            }
         }
+        if (userAnswer.equals("y")) {
+            consoleSettingsService.removeCurrentUserIcon();
+            System.out.println("Your icon has been removed.");
+        }
+        previousMenuElement.handleMenuInteraction();
     }
 
     private boolean isUserAnswerValid(String userAnswer) {

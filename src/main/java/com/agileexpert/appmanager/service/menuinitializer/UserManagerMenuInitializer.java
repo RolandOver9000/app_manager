@@ -27,10 +27,7 @@ public class UserManagerMenuInitializer extends MenuInitializer{
 
     @Override
     public void linkMenuElements() {
-        if(appManagerContext.getCurrentAppManagerUser().isUserFamilyHead()) {
-            subElements.put(Integer.toString(subElements.size() + 1), addUser);
-            menuElement.setMenuElements(subElements);
-        }
+        addUser.setPreviousMenuElement(menuElement);
         subElements.put(Integer.toString(subElements.size() + 1), addUser);
         menuElement.setMenuElements(subElements);
     }

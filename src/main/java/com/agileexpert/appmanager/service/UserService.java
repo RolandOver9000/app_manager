@@ -1,6 +1,7 @@
 package com.agileexpert.appmanager.service;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
+import com.agileexpert.appmanager.model.ConsoleSettings;
 import com.agileexpert.appmanager.model.Family;
 import com.agileexpert.appmanager.repository.AppManagerUserRepository;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class UserService {
 
     private AppManagerUser currentLoggedInUser;
     private final FamilyService familyService;
+    private final ConsoleSettingsService consoleSettingsService;
     private final AppManagerUserRepository appManagerUserRepository;
 
     public void addUser(String username, String password) {
@@ -29,6 +31,10 @@ public class UserService {
             Family currentUserFamily = familyService.getFamilyByFamilyHead(currentLoggedInUser);
             System.out.println(currentLoggedInUser.toString());
             newUser.setUserFamily(currentUserFamily);
+
+            ConsoleSettings newConsoleSettings = consoleSettingsService.getNewConsoleSettingsObject();
+            newConsoleSettings.setAppManagerUser(newUser);
+
             System.out.println(newUser.toString());
             appManagerUserRepository.save(newUser);
         } catch (Exception e) {

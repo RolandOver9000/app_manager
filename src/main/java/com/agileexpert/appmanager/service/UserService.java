@@ -33,4 +33,8 @@ public class UserService {
                 .findByUsernameAndPassword(username, password);
     }
 
+    public void afterSuccessfulLogin(AppManagerUser appManagerUser) {
+        setCurrentLoggedInUser(appManagerUser);
+    }
+
 }

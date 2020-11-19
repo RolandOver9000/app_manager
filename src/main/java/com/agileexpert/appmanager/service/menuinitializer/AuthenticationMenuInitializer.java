@@ -30,7 +30,6 @@ public class AuthenticationMenuInitializer extends MenuInitializer{
     public void linkMenuElements() {
         registration.setPreviousMenuElement(menuElement);
         login.setPreviousMenuElement(menuElement);
-        login.setMenuElementAfterSuccessfulLogin(mainMenuInitializer.getMenuElement());
         subElements.put(Integer.toString(subElements.size() +1), registration);
         subElements.put(Integer.toString(subElements.size() +1), login);
         menuElement.setMenuElements(subElements);

@@ -11,7 +11,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private final MenuService menuService;
 
     @Override
-    public void run(String...args) throws Exception {
+    public void run(String...args) {
         menuService.startAppManagerApplication();
     }
 }

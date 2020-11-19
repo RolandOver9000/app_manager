@@ -30,6 +30,7 @@ public class AddUser implements MenuElement {
         userService.addUser(AppManagerUser.builder()
                 .username(newUsername)
                 .password(newPassword)
+                .userFamily(userService.getCurrentLoggedInUser().getUserFamily())
                 .build());
         System.out.println("User saved.");
     }

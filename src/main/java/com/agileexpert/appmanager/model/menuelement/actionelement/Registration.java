@@ -3,8 +3,7 @@ package com.agileexpert.appmanager.model.menuelement.actionelement;
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.Family;
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
-import com.agileexpert.appmanager.service.FamilyService;
-import com.agileexpert.appmanager.service.UserService;
+import com.agileexpert.appmanager.service.AuthorizationService;
 import com.agileexpert.appmanager.service.util.Util;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +14,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Registration implements MenuElement {
 
-    private final UserService userService;
-    private final FamilyService familyService;
+    private final AuthorizationService authorizationService;
     private String menuElementName = "Registration";
     private MenuElement previousMenuElement;
 
@@ -33,31 +31,19 @@ public class Registration implements MenuElement {
         String familyHeadPasswordConfirm = "";
 
         while(!familyHeadPassword.equals(familyHeadPasswordConfirm)) {
-            System.out.println("Please confirm your password, or enter b for exit: ");
+            System.out.println("Please confirm your password, or enter 0 for exit: ");
             familyHeadPasswordConfirm = Util.readUserInput();
-            if(familyHeadPasswordConfirm.equals("b")) {
+            if(familyHeadPasswordConfirm.equals("0")) {
                 previousMenuElement.handleMenuInteraction();
             }
         }
 
         handleRegistrationData(familyHeadUsername, familyHeadPassword);
-        previousMenuElement.handleMenuInteraction();
         System.out.println("You are now registered in the system. You can now login.");
+        previousMenuElement.handleMenuInteraction();
     }
 
     private void handleRegistrationData(String familyHeadUsername, String familyHeadPassword) {
-        AppManagerUser newAppManagerUser = AppManagerUser.builder()
-                .username(familyHeadUsername)
-                .password(familyHeadPassword)
-                .isUserFamilyHead(true)
-                .build();
-
-        Family newFamily = Family.builder()
-                .familyHead(newAppManagerUser)
-                .build();
-
-        newAppManagerUser.setUserFamily(newFamily);
-        userService.addUser(newAppManagerUser);
-        familyService.createNewFamily(newFamily);
+        authorizationService.handleRegistration(familyHeadUsername, familyHeadPassword);
     }
 }

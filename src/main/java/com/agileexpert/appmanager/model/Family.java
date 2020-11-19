@@ -22,8 +22,10 @@ public class Family {
     @ToString.Exclude
     private AppManagerUser familyHead;
 
-    @OneToMany(mappedBy = "userFamily", cascade = {CascadeType.PERSIST})
+    @Singular
+    @OneToMany(mappedBy = "userFamily", cascade = {CascadeType.ALL})
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<AppManagerUser> familyMembers;
+
 }

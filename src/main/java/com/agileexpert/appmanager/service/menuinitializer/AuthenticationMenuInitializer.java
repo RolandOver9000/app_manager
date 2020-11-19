@@ -1,6 +1,7 @@
 package com.agileexpert.appmanager.service.menuinitializer;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
+import com.agileexpert.appmanager.model.menuelement.actionelement.Login;
 import com.agileexpert.appmanager.model.menuelement.actionelement.Registration;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.Map;
 public class AuthenticationMenuInitializer extends MenuInitializer{
 
     private final Registration registration;
+    private final Login login;
     private Map<String, MenuElement> subElements = new HashMap<>();
 
     @Override
@@ -26,7 +28,9 @@ public class AuthenticationMenuInitializer extends MenuInitializer{
     @Override
     public void linkMenuElements() {
         registration.setPreviousMenuElement(menuElement);
+        login.setPreviousMenuElement(menuElement);
         subElements.put(Integer.toString(subElements.size() +1), registration);
+        subElements.put(Integer.toString(subElements.size() +1), login);
         menuElement.setMenuElements(subElements);
     }
 }

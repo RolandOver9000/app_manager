@@ -25,6 +25,7 @@ public class IconSettingsMenuInitializer extends MenuInitializer {
 
     @Override
     public void linkMenuElements() {
+        addIcon.setPreviousMenuElement(menuElement);
         subElements.put(Integer.toString(subElements.size() +1), addIcon);
         menuElement.setMenuElements(subElements);
     }

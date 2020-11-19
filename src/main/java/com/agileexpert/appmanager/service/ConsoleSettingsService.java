@@ -16,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 public class ConsoleSettingsService {
 
-    private final UserService userService;
+    private final AppManagerContext appManagerContext;
     private final ConsoleSettingsRepository consoleSettingsRepository;
     private static String STANDARD_BACKGROUND_COLOR = "black";
     private static String STANDARD_ICON = "~";
@@ -33,14 +33,19 @@ public class ConsoleSettingsService {
     }
 
     public boolean trySetNewIcon(String newIcon) {
-        Optional<ConsoleSettings> currentConsoleSettings =
-                consoleSettingsRepository.getConsoleSettingsByAppManagerUser(userService.getCurrentLoggedInUser());
+        Optional<ConsoleSettings> currentConsoleSettings = consoleSettingsRepository
+                        .getConsoleSettingsByAppManagerUser(appManagerContext.getCurrentAppManagerUser());
         if(currentConsoleSettings.isPresent()) {
             ConsoleSettings searchedSettings = currentConsoleSettings.get();
             searchedSettings.setIcon(newIcon);
             consoleSettingsRepository.save(searchedSettings);
+            refreshAppManagerContextCurrentConsoleSettings(currentConsoleSettings.get());
             return true;
         }
         return false;
+    }
+
+    private void refreshAppManagerContextCurrentConsoleSettings(ConsoleSettings currentConsoleSettings) {
+        appManagerContext.setCurrentConsoleSettings(currentConsoleSettings);
     }
 }

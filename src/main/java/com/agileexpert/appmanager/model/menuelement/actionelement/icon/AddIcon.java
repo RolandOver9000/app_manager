@@ -14,6 +14,8 @@ public class AddIcon implements MenuElement {
 
     private String menuElementName = "Add icon";
     private final ConsoleSettingsService consoleSettingsService;
+    private MenuElement previousMenuElement;
+
 
     @Override
     public void handleMenuInteraction() {
@@ -29,5 +31,6 @@ public class AddIcon implements MenuElement {
         } else {
             System.out.println("Your icon cannot be set.");
         }
+        previousMenuElement.handleMenuInteraction();
     }
 }

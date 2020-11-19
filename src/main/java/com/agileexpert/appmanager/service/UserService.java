@@ -17,19 +17,20 @@ import java.util.Optional;
 @Slf4j
 public class UserService {
 
-    private AppManagerUser currentLoggedInUser;
+    private final AppManagerContext appManagerContext;
     private final FamilyService familyService;
     private final ConsoleSettingsService consoleSettingsService;
     private final AppManagerUserRepository appManagerUserRepository;
 
     public void addUser(String username, String password) {
+        AppManagerUser currentAppManagerUser = appManagerContext.getCurrentAppManagerUser();
         try {
             AppManagerUser newUser = AppManagerUser.builder()
                     .username(username)
                     .password(password)
                     .build();
-            Family currentUserFamily = familyService.getFamilyByFamilyHead(currentLoggedInUser);
-            System.out.println(currentLoggedInUser.toString());
+            Family currentUserFamily = familyService.getFamilyByFamilyHead(currentAppManagerUser);
+            System.out.println(currentAppManagerUser.toString());
             AppManagerUser savedAppManagerUser = appManagerUserRepository.save(newUser);
             savedAppManagerUser.setUserFamily(currentUserFamily);
             appManagerUserRepository.save(savedAppManagerUser);
@@ -75,8 +76,7 @@ public class UserService {
     }
 
     public void afterSuccessfulLogin(AppManagerUser appManagerUser) {
-        AppManagerContext.
-        setCurrentLoggedInUser(appManagerUser);
+        appManagerContext.setCurrentAppManagerUser(appManagerUser);
     }
 
 }

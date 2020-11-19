@@ -28,9 +28,19 @@ public class UserService {
 
     }
 
-    public Optional<AppManagerUser> searchUserByNameAndPassword(String username, String password) {
+    public boolean isUserExistWithGivenUsernamePassword(String username, String password) {
         return appManagerUserRepository
-                .findByUsernameAndPassword(username, password);
+                .existsAppManagerUserByUsernameAndPassword(username, password);
+    }
+
+    public boolean isUserCanLoginWithUsernameAndPassword(String username, String password) {
+        Optional<AppManagerUser> searchedAppManagerUser =
+                appManagerUserRepository.findByUsernameAndPassword(username, password);
+        if(searchedAppManagerUser.isPresent()) {
+            afterSuccessfulLogin(searchedAppManagerUser.get());
+            return true;
+        }
+        return false;
     }
 
     public void afterSuccessfulLogin(AppManagerUser appManagerUser) {

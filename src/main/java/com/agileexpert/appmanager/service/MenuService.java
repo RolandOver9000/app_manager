@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MenuService {
 
-    private final LoginService loginService;
+    private final AuthorizationService authorizationService;
     private final MainMenuInitializer mainMenuInitializer;
     private final UserManagerMenuInitializer userManagerMenuInitializer;
 
@@ -19,7 +19,7 @@ public class MenuService {
     }
 
     private void doAuthorization() {
-        loginService.doAuthorization();
+        authorizationService.doAuthorization();
         initializeMenuElements();
         linkMenuElements();
     }

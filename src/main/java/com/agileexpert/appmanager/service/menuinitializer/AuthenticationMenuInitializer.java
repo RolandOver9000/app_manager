@@ -16,7 +16,6 @@ public class AuthenticationMenuInitializer extends MenuInitializer{
 
     private final Registration registration;
     private final Login login;
-    private final MainMenuInitializer mainMenuInitializer;
     private Map<String, MenuElement> subElements = new HashMap<>();
 
     @Override

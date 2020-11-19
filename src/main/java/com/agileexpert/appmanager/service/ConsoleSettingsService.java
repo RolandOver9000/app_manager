@@ -1,5 +1,6 @@
 package com.agileexpert.appmanager.service;
 
+import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.ConsoleSettings;
 import com.agileexpert.appmanager.repository.ConsoleSettingsRepository;
 import lombok.Data;
@@ -17,10 +18,15 @@ public class ConsoleSettingsService {
     private static String STANDARD_BACKGROUND_COLOR = "black";
     private static String STANDARD_ICON = "~";
 
-    public ConsoleSettings getNewConsoleSettingsObject() {
-        return ConsoleSettings.builder()
-                .consoleBackgroundColor(STANDARD_BACKGROUND_COLOR)
-                .icon(STANDARD_ICON)
-                .build();
+    public void setConsoleSettingsForRegisteredUser(AppManagerUser newAppManagerUser) {
+         ConsoleSettings newConsoleSettings = ConsoleSettings.builder()
+                 .consoleBackgroundColor(STANDARD_BACKGROUND_COLOR)
+                 .icon(STANDARD_ICON)
+                 .appManagerUser(newAppManagerUser)
+                 .build();
+        System.out.println("consolesettings " + newConsoleSettings);
+        consoleSettingsRepository.save(newConsoleSettings);
+
+
     }
 }

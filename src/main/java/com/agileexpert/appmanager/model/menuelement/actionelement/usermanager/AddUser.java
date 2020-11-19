@@ -15,6 +15,7 @@ public class AddUser implements MenuElement {
 
     private final UserService userService;
     private String menuElementName = "Add user";
+    private MenuElement previousMenuElement;
 
     @Override
     public void handleMenuInteraction() {
@@ -29,5 +30,6 @@ public class AddUser implements MenuElement {
 
         userService.addUser(newUsername, newPassword);
         System.out.println("User saved.");
+        previousMenuElement.handleMenuInteraction();
     }
 }

@@ -24,4 +24,9 @@ public class FamilyService {
         Optional<Family> searchedFamily = familyRepository.getByFamilyHead(familyHead);
         return searchedFamily.orElse(null);
     }
+
+    public Family getNewFamilyObject() {
+        return Family.builder()
+                .build();
+    }
 }

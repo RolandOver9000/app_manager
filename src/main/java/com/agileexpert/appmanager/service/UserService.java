@@ -30,13 +30,12 @@ public class UserService {
                     .build();
             Family currentUserFamily = familyService.getFamilyByFamilyHead(currentLoggedInUser);
             System.out.println(currentLoggedInUser.toString());
-            newUser.setUserFamily(currentUserFamily);
+            AppManagerUser savedAppManagerUser = appManagerUserRepository.save(newUser);
+            savedAppManagerUser.setUserFamily(currentUserFamily);
+            appManagerUserRepository.save(savedAppManagerUser);
 
-            ConsoleSettings newConsoleSettings = consoleSettingsService.getNewConsoleSettingsObject();
-            newConsoleSettings.setAppManagerUser(newUser);
 
-            System.out.println(newUser.toString());
-            appManagerUserRepository.save(newUser);
+            System.out.println("new user " + newUser.toString());
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Error occurred while saving user to the database.");
@@ -44,20 +43,25 @@ public class UserService {
     }
 
     public void addFamilyHead(String username, String password) {
-        AppManagerUser newAppManagerUser = AppManagerUser.builder()
+        AppManagerUser newUser = AppManagerUser.builder()
                 .username(username)
                 .password(password)
                 .isUserFamilyHead(true)
                 .build();
 
-        Family newFamily = Family.builder()
-                .build();
+        Family newFamily = familyService.getNewFamilyObject();
+        consoleSettingsService.setConsoleSettingsForRegisteredUser(newUser);
+        AppManagerUser savedAppManagerUser = appManagerUserRepository.save(newUser);
+        Family savedFamily = familyService.createNewFamily(newFamily);
+        connectFamilyHeadWithFamily(savedFamily, savedAppManagerUser);
 
-        newAppManagerUser.setUserFamily(newFamily);
-        newFamily.setFamilyHead(newAppManagerUser);
-        System.out.println(newAppManagerUser.toString());
-        appManagerUserRepository.save(newAppManagerUser);
-        familyService.createNewFamily(newFamily);
+    }
+
+    private void connectFamilyHeadWithFamily(Family savedFamily, AppManagerUser savedAppManagerUser) {
+        savedAppManagerUser.setUserFamily(savedFamily);
+        savedFamily.setFamilyHead(savedAppManagerUser);
+        appManagerUserRepository.save(savedAppManagerUser);
+        familyService.createNewFamily(savedFamily);
     }
 
     public boolean isUserExist(String username, String password) {

@@ -27,6 +27,7 @@ public class UserManagerMenuInitializer extends MenuInitializer{
 
     @Override
     public void linkMenuElements() {
+        addUser.setPreviousMenuElement(menuElement);
         if(userService.getCurrentLoggedInUser().isUserFamilyHead()) {
             subElements.put(Integer.toString(subElements.size() + 1), addUser);
             menuElement.setMenuElements(subElements);

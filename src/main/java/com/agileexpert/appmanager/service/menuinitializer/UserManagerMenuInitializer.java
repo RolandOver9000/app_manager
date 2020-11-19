@@ -4,7 +4,6 @@ import com.agileexpert.appmanager.model.menuelement.MenuElement;
 import com.agileexpert.appmanager.model.menuelement.actionelement.usermanager.AddUser;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
 import com.agileexpert.appmanager.service.AppManagerContext;
-import com.agileexpert.appmanager.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

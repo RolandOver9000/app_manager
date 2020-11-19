@@ -1,7 +1,7 @@
 package com.agileexpert.appmanager.model.menuelement.actionelement.icon;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
-import com.agileexpert.appmanager.service.ConsoleSettingsService;
+import com.agileexpert.appmanager.service.dataaccess.ConsoleSettingsService;
 import com.agileexpert.appmanager.service.util.Util;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

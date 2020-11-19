@@ -1,7 +1,7 @@
 package com.agileexpert.appmanager.model.menuelement.actionelement.usermanager;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
-import com.agileexpert.appmanager.service.UserService;
+import com.agileexpert.appmanager.service.dataaccess.UserService;
 import com.agileexpert.appmanager.service.util.Util;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

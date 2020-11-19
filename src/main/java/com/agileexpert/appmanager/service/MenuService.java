@@ -1,9 +1,6 @@
 package com.agileexpert.appmanager.service;
 
-import com.agileexpert.appmanager.service.menuinitializer.ConsoleSettingsMenuInitializer;
-import com.agileexpert.appmanager.service.menuinitializer.IconSettingsMenuInitializer;
-import com.agileexpert.appmanager.service.menuinitializer.MainMenuInitializer;
-import com.agileexpert.appmanager.service.menuinitializer.UserManagerMenuInitializer;
+import com.agileexpert.appmanager.service.menuinitializer.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class MenuService {
 
     private final MainMenuInitializer mainMenuInitializer;
+    private final ApplicationMenuInitializer applicationMenuInitializer;
     private final UserManagerMenuInitializer userManagerMenuInitializer;
     private final ConsoleSettingsMenuInitializer consoleSettingsMenuInitializer;
     private final IconSettingsMenuInitializer iconSettingsMenuInitializer;
@@ -28,6 +26,8 @@ public class MenuService {
         mainMenuInitializer.initialize();
         consoleSettingsMenuInitializer.initialize();
         iconSettingsMenuInitializer.initialize();
+        applicationMenuInitializer.initialize();
+
     }
 
     private void linkMenuElements() {
@@ -35,5 +35,6 @@ public class MenuService {
         mainMenuInitializer.linkMenuElements();
         consoleSettingsMenuInitializer.linkMenuElements();
         iconSettingsMenuInitializer.linkMenuElements();
+        applicationMenuInitializer.linkMenuElements();
     }
 }

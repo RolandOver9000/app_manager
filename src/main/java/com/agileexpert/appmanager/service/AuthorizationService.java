@@ -1,5 +1,6 @@
 package com.agileexpert.appmanager.service;
 
+import com.agileexpert.appmanager.service.dataaccess.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

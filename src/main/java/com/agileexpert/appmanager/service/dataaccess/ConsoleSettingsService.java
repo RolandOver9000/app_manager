@@ -1,8 +1,9 @@
-package com.agileexpert.appmanager.service;
+package com.agileexpert.appmanager.service.dataaccess;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.ConsoleSettings;
 import com.agileexpert.appmanager.repository.ConsoleSettingsRepository;
+import com.agileexpert.appmanager.service.AppManagerContext;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

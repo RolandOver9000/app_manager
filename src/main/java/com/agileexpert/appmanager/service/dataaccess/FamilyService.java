@@ -1,4 +1,4 @@
-package com.agileexpert.appmanager.service;
+package com.agileexpert.appmanager.service.dataaccess;
 
 import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.Family;

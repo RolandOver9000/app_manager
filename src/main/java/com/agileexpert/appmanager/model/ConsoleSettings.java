@@ -21,7 +21,7 @@ public class ConsoleSettings {
     @ManyToOne(cascade = {CascadeType.ALL})
     private AppManagerUser appManagerUser;
 
-    private String iconUnicode;
+    private String icon;
 
     private String consoleBackgroundColor;
 }

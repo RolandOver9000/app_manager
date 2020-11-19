@@ -22,13 +22,10 @@ public class Family {
     @ToString.Exclude
     private AppManagerUser familyHead;
 
+    @Singular
     @OneToMany(mappedBy = "userFamily", cascade = {CascadeType.ALL})
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @Singular
     private Set<AppManagerUser> familyMembers;
 
-    public void addAppManagerUser(AppManagerUser appManagerUser) {
-        familyMembers.add(appManagerUser);
-    }
 }

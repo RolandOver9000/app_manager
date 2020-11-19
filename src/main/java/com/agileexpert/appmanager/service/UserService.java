@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.Set;
 
 @Data
 @Service
@@ -28,8 +27,9 @@ public class UserService {
                     .password(password)
                     .build();
             Family currentUserFamily = familyService.getFamilyByFamilyHead(currentLoggedInUser);
-
+            System.out.println(currentLoggedInUser.toString());
             newUser.setUserFamily(currentUserFamily);
+            System.out.println(newUser.toString());
             appManagerUserRepository.save(newUser);
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class UserService {
 
         newAppManagerUser.setUserFamily(newFamily);
         newFamily.setFamilyHead(newAppManagerUser);
-
+        System.out.println(newAppManagerUser.toString());
         appManagerUserRepository.save(newAppManagerUser);
         familyService.createNewFamily(newFamily);
     }

@@ -16,10 +16,8 @@ public class AppManagerUser {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
     private String username;
 
-    @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "appManagerUser", cascade = {CascadeType.PERSIST})
@@ -30,7 +28,6 @@ public class AppManagerUser {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Family userFamily;
 
-    @Column(nullable = false)
     private boolean isUserFamilyHead;
 
 }

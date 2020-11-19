@@ -10,18 +10,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MenuService {
 
-    private final AuthorizationService authorizationService;
     private final MainMenuInitializer mainMenuInitializer;
     private final UserManagerMenuInitializer userManagerMenuInitializer;
 
-    public void startAppManagerApplication() {
-        doAuthorization();
-    }
-
-    private void doAuthorization() {
-        authorizationService.doAuthorization();
+    public void afterSuccessfulLogin(){
         initializeMenuElements();
         linkMenuElements();
+        mainMenuInitializer.getMenuElement().handleMenuInteraction();
     }
 
     private void initializeMenuElements() {

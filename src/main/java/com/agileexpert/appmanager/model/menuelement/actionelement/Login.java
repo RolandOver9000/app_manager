@@ -1,6 +1,7 @@
 package com.agileexpert.appmanager.model.menuelement.actionelement;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
+import com.agileexpert.appmanager.service.AuthorizationService;
 import com.agileexpert.appmanager.service.UserService;
 import com.agileexpert.appmanager.service.util.Util;
 import lombok.Data;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Login implements MenuElement {
 
-    private final UserService userService;
+    private final AuthorizationService authorizationService;
     private String menuElementName = "Login";
     private MenuElement previousMenuElement;
     private MenuElement menuElementAfterSuccessfulLogin;
@@ -31,10 +32,11 @@ public class Login implements MenuElement {
     }
 
     private void handleLoginInputs(String username, String password) {
-        boolean isLoginSuccessful = userService.isUserCanLoginWithUsernameAndPassword(username, password);
+        boolean isLoginSuccessful =
+                authorizationService.isUserCanLoginWithUsernameAndPassword(username, password);
         if(isLoginSuccessful) {
             System.out.println("Welcome " + username + "!");
-            menuElementAfterSuccessfulLogin.handleMenuInteraction();
+            authorizationService.handleSuccessfulLogin();
         } else {
             System.out.println("Your username or password is not correct.");
             previousMenuElement.handleMenuInteraction();

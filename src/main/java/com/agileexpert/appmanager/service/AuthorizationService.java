@@ -1,6 +1,5 @@
 package com.agileexpert.appmanager.service;
 
-import com.agileexpert.appmanager.service.menuinitializer.AuthenticationMenuInitializer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +8,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthorizationService {
 
-    private final AuthenticationMenuInitializer authenticationMenuInitializer;
+    private final UserService userService;
+    private final MenuService menuService;
 
-    public void doAuthorization() {
-        authenticationMenuInitializer.initialize();
-        authenticationMenuInitializer.linkMenuElements();
-        authenticationMenuInitializer.getMenuElement().handleMenuInteraction();
+    public boolean isUserCanLoginWithUsernameAndPassword(String username, String password) {
+        return userService.isUserExist(username, password);
+    }
+
+    public void handleSuccessfulLogin() {
+        menuService.afterSuccessfulLogin();
+    }
+
+    public void handleRegistration(String familyHeadUsername, String familyHeadPassword) {
+        userService.addFamilyHead(familyHeadUsername, familyHeadPassword);
     }
 }

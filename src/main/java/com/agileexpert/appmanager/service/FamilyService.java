@@ -1,10 +1,13 @@
 package com.agileexpert.appmanager.service;
 
+import com.agileexpert.appmanager.model.AppManagerUser;
 import com.agileexpert.appmanager.model.Family;
 import com.agileexpert.appmanager.repository.FamilyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,4 +20,8 @@ public class FamilyService {
        return familyRepository.save(family);
     }
 
+    public Family getFamilyByFamilyHead(AppManagerUser familyHead) {
+        Optional<Family> searchedFamily = familyRepository.getByFamilyHead(familyHead);
+        return searchedFamily.orElse(null);
+    }
 }

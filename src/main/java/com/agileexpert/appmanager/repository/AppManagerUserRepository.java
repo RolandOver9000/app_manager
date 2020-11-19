@@ -10,6 +10,4 @@ import java.util.Optional;
 public interface AppManagerUserRepository extends CrudRepository<AppManagerUser, Long> {
 
     Optional<AppManagerUser> findByUsernameAndPassword(String username, String password);
-
-    boolean existsAppManagerUserByUsernameAndPassword(String username, String password);
 }

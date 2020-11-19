@@ -14,6 +14,7 @@ import java.util.Map;
 public class MainMenuInitializer extends MenuInitializer {
 
     private final UserManagerMenuInitializer userManagerMenuInitializer;
+    private final ConsoleSettingsMenuInitializer consoleSettingsMenuInitializer;
     private Map<String, MenuElement> subElements = new HashMap<>();
 
     @Override
@@ -26,8 +27,13 @@ public class MainMenuInitializer extends MenuInitializer {
     @Override
     public void linkMenuElements() {
         userManagerMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
+        consoleSettingsMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
+
         MenuElement userManager = userManagerMenuInitializer.getMenuElement();
+        MenuElement consoleSettings = consoleSettingsMenuInitializer.getMenuElement();
+
         subElements.put(Integer.toString(subElements.size() +1), userManager);
+        subElements.put(Integer.toString(subElements.size() + 1), consoleSettings);
         menuElement.setMenuElements(subElements);
     }
 

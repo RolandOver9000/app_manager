@@ -15,6 +15,7 @@ public class MainMenuInitializer extends MenuInitializer {
 
     private final UserManagerMenuInitializer userManagerMenuInitializer;
     private final ConsoleSettingsMenuInitializer consoleSettingsMenuInitializer;
+    private final ApplicationMenuInitializer applicationMenuInitializer;
     private Map<String, MenuElement> subElements = new HashMap<>();
 
     @Override
@@ -26,8 +27,9 @@ public class MainMenuInitializer extends MenuInitializer {
 
     @Override
     public void linkMenuElements() {
-        userManagerMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
-        consoleSettingsMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
+        userManagerMenuInitializer.setPreviousNavigationMenuElement(menuElement);
+        consoleSettingsMenuInitializer.setPreviousNavigationMenuElement(menuElement);
+        applicationMenuInitializer.setPreviousNavigationMenuElement(menuElement);
 
         MenuElement userManager = userManagerMenuInitializer.getMenuElement();
         MenuElement consoleSettings = consoleSettingsMenuInitializer.getMenuElement();

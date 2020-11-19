@@ -24,7 +24,7 @@ public class ConsoleSettingsMenuInitializer extends MenuInitializer{
 
     @Override
     public void linkMenuElements() {
-        iconSettingsMenuInitializer.getMenuElement().setPreviousMenuNavigationElement(menuElement);
+        iconSettingsMenuInitializer.setPreviousNavigationMenuElement(menuElement);
         MenuElement iconSettingsMenu = iconSettingsMenuInitializer.getMenuElement();
         subElements.put(Integer.toString(subElements.size() +1), iconSettingsMenu);
         menuElement.setMenuElements(subElements);

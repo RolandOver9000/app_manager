@@ -1,6 +1,7 @@
 package com.agileexpert.appmanager.service.menuinitializer;
 
 import com.agileexpert.appmanager.model.menuelement.MenuElement;
+import com.agileexpert.appmanager.model.menuelement.actionelement.application.InstalledApplications;
 import com.agileexpert.appmanager.model.menuelement.navigationelement.MenuNavigationElement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -24,5 +25,9 @@ public class ApplicationMenuInitializer extends MenuInitializer{
 
     @Override
     public void linkMenuElements() {
+        installedApplications.setPreviousMenuElement(menuElement);
+        subElements.put(Integer.toString(subElements.size() +1), installedApplications);
+        menuElement.setMenuElements(subElements);
     }
+
 }

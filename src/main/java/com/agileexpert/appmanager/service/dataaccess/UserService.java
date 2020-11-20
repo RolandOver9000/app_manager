@@ -37,7 +37,6 @@ public class UserService {
             savedAppManagerUser.setUserFamily(currentUserFamily);
             appManagerUserRepository.save(savedAppManagerUser);
 
-
             System.out.println("new user " + newUser.toString());
         } catch (Exception e) {
             e.printStackTrace();
